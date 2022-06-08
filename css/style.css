@@ -1,0 +1,25 @@
+
+/* 影像與畫布區 */
+#img-result{
+	margin-top:30px !important;
+	text-align:center;
+}
+
+#origin-img video{
+	height:300px;
+	width:400px;
+	border: 3px orange solid;
+
+}
+
+#result-img canvas{
+	height:300px;
+	width:400px;
+	border: 3px green solid;
+}
+
+/* 結果區塊 */
+#result{
+	font-size:150px;
+	color:orange;
+}
