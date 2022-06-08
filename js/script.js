@@ -3,6 +3,7 @@ var model;
 // 載入模型
 async function loadModel() {
   model = await tf.loadLayersModel('./models/model.json');
+  tf.ENV.set('WEBGL_DELETE_TEXTURE_THRESHOLD', 0);//強制Tensorflow.js清理GPU記憶體。
 }
 
 //OpenCV預處理
@@ -114,4 +115,4 @@ const init = () => {
   console.log("init");
 };
 
-document.getElementById("app").onload = init();
+init();
