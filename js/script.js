@@ -66,7 +66,8 @@ const getCameraStream = video => {
   const constraints = {
     audio: false,
     video: {
-      facingMode: "user"
+      // facingMode: "user",
+      facingMode:"facingMode"      
     }
   };
   navigator.mediaDevices
