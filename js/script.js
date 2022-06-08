@@ -27,7 +27,7 @@ function CanvasToTensor(imgElement) {
 // 導入模型預測結果
 async function getPredict(tensor) {
   let resultObj = document.querySelector("#result")
-  model = await tf.loadLayersModel('../models/model.json');
+  model = await tf.loadLayersModel('./models/model.json');
   let predict_result = await model.predict(tensor).data()
   let predict_array = await Array.from(predict_result)
   var max_predict = predict_array.reduce(function (a, b) {
