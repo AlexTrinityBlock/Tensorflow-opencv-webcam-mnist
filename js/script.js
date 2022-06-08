@@ -67,7 +67,7 @@ const getCameraStream = video => {
     audio: false,
     video: {
       // facingMode: "user",
-      facingMode:"facingMode"      
+      facingMode:"environment"      
     }
   };
   navigator.mediaDevices
