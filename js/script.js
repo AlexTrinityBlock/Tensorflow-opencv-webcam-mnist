@@ -1,7 +1,7 @@
 var model;
 
 // 載入模型
-async function loadModel(){
+async function loadModel() {
   model = await tf.loadLayersModel('./models/model.json');
 }
 
@@ -15,7 +15,7 @@ function opencvPreprocess(imgElement) {
     // 反色
     cv.bitwise_not(mat, mat)
     cv.imshow(imgElement.id, mat);
-    mat.delete();    
+    mat.delete();
   } catch (e) {
   }
 };
@@ -57,7 +57,8 @@ const getFrameFromVideo = (video, canvas) => {
   // 預測結果
   getPredict(tensor)
   ctx.restore();
-  requestAnimationFrame(() => getFrameFromVideo(video, canvas));
+  // Javascript自動動畫效果，開啟之後每秒更新率很高，畫面流暢，但手機有可能崩潰。
+  // requestAnimationFrame(() => getFrameFromVideo(video, canvas));
 };
 
 // 設置攝影機
@@ -67,7 +68,7 @@ const getCameraStream = video => {
     audio: false,
     video: {
       // facingMode: "user",
-      facingMode:"environment"      
+      facingMode: "environment"
     }
   };
   navigator.mediaDevices
@@ -101,10 +102,13 @@ const init = () => {
   let video = createVideo("vid", 480, 360);
   let canvas = createCanvas("canvas", 480, 360);
   let originImg = document.getElementById("origin-img");
-  let resultImg =document.getElementById("result-img");
+  let resultImg = document.getElementById("result-img");
   loadModel()
   getCameraStream(video);
-  getFrameFromVideo(video, canvas);
+  // 每0.25秒更新1次
+  window.setInterval(()=>{
+    getFrameFromVideo(video, canvas)
+  }, 25)
   originImg.appendChild(video);
   resultImg.appendChild(canvas);
   console.log("init");
