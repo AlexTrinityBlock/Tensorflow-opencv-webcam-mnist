@@ -46,7 +46,7 @@ async function getPredict(tensor) {
 
 // 設置畫布
 const getFrameFromVideo = (video, canvas) => {
-  const ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save();
   ctx.drawImage(video, 0, 0, video.width, video.height);
@@ -78,7 +78,7 @@ const getCameraStream = video => {
 
 // 建立影片
 const createVideo = (id, width, height) => {
-  const video = document.createElement("video");
+  let video = document.createElement("video");
   video.id = id;
   video.width = width;
   video.height = height;
@@ -89,7 +89,7 @@ const createVideo = (id, width, height) => {
 
 //建立畫布
 const createCanvas = (id, width, height) => {
-  const canvas = document.createElement("canvas");
+  let canvas = document.createElement("canvas");
   canvas.id = id;
   canvas.width = width;
   canvas.height = height;
@@ -97,10 +97,10 @@ const createCanvas = (id, width, height) => {
 };
 
 const init = () => {
-  const video = createVideo("vid", 480, 360);
-  const canvas = createCanvas("canvas", 480, 360);
-  const originImg = document.getElementById("origin-img");
-  const resultImg =document.getElementById("result-img");
+  let video = createVideo("vid", 480, 360);
+  let canvas = createCanvas("canvas", 480, 360);
+  let originImg = document.getElementById("origin-img");
+  let resultImg =document.getElementById("result-img");
   loadModel()
   getCameraStream(video);
   getFrameFromVideo(video, canvas);
