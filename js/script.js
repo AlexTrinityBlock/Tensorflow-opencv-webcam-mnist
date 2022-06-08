@@ -1,3 +1,10 @@
+var model;
+
+// 載入模型
+async function loadModel(){
+  model = await tf.loadLayersModel('./models/model.json');
+}
+
 //OpenCV預處理
 function opencvPreprocess(imgElement) {
   try {
@@ -27,7 +34,6 @@ function CanvasToTensor(imgElement) {
 // 導入模型預測結果
 async function getPredict(tensor) {
   let resultObj = document.querySelector("#result")
-  model = await tf.loadLayersModel('./models/model.json');
   let predict_result = await model.predict(tensor).data()
   let predict_array = await Array.from(predict_result)
   var max_predict = predict_array.reduce(function (a, b) {
@@ -95,6 +101,7 @@ const init = () => {
   const canvas = createCanvas("canvas", 480, 360);
   const originImg = document.getElementById("origin-img");
   const resultImg =document.getElementById("result-img");
+  loadModel()
   getCameraStream(video);
   getFrameFromVideo(video, canvas);
   originImg.appendChild(video);
