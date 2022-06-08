@@ -12,7 +12,7 @@ function opencvPreprocess(imgElement) {
     cv.cvtColor(mat, mat, cv.COLOR_RGBA2GRAY, 0);
     // 二值化
     cv.threshold(mat, mat, 0, 255, cv.THRESH_BINARY | cv.THRESH_OTSU);
-    // 
+    // 反色
     cv.bitwise_not(mat, mat)
     cv.imshow(imgElement.id, mat);
     mat.delete();    
