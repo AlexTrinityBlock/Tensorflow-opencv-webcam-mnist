@@ -15,8 +15,15 @@ function opencvPreprocess(imgElement) {
     cv.threshold(mat, mat, 0, 255, cv.THRESH_BINARY | cv.THRESH_OTSU);
     // 反色
     cv.bitwise_not(mat, mat)
+    //縮小後放大，模擬CNN神經網路所見
+    let dsize = new cv.Size(28, 28);
+    let dsize2= new cv.Size(336, 300);
+    cv.resize(mat, mat, dsize, 0, 0, cv.INTER_AREA);
+    cv.resize(mat, mat, dsize2, 0, 0, cv.INTER_AREA);
     cv.imshow(imgElement.id, mat);
     mat.delete();
+    dsize.delete();
+    dsize2.delete();
   } catch (e) {
   }
 };
