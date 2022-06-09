@@ -17,7 +17,7 @@ function opencvPreprocess(imgElement) {
     cv.bitwise_not(mat, mat)
     //縮小後放大，模擬CNN神經網路所見
     let dsize = new cv.Size(28, 28);
-    let dsize2= new cv.Size(336, 300);
+    let dsize2= new cv.Size(300, 300);
     cv.resize(mat, mat, dsize, 0, 0, cv.INTER_AREA);
     cv.resize(mat, mat, dsize2, 0, 0, cv.INTER_AREA);
     cv.imshow(imgElement.id, mat);
